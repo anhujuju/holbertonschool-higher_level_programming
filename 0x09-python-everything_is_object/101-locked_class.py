@@ -3,8 +3,6 @@
 This is the "101-locked_class" module.
 The locked_class module contains one class, "LockedClass".
 '''
-
-
 class LockedClass:
     '''This is the "LockedClass" class.
     The class prevents the user from creating any new instance attributes not
