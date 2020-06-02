@@ -1,0 +1,26 @@
+>>> test = __import__('0-add_integer').add_integer
+
+# Case 1: Standard function behavior
+
+>>> test(1, 2)
+3
+
+# Case 2: One argument only
+
+>>> test(1)
+99
+
+
+# Case 4: Float NaN
+
+>>> test((1.5+5j))
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer
+
+# Case 5: Wrong argument type
+
+>>> test("1")
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer

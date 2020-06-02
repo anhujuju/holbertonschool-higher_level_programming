@@ -1,0 +1,1 @@
+>>> test = __import__('0-add-integer').add_integer
