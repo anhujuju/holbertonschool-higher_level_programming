@@ -1,0 +1,1 @@
+This project represents the first introduction to SQL and managing databases.
