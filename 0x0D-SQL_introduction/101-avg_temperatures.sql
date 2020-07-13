@@ -1,2 +1,2 @@
--- Script that displays the top 3 of cities temperature during July and August
+-- Script that displays the average temperature
 SELECT city, AVG(value) AS avg_temp FROM temperatures GROUP BY city ORDER BY avg_temp DESC;
