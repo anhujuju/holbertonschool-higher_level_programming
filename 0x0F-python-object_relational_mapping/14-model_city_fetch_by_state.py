@@ -2,24 +2,31 @@
 """deletes all State objects with a name containing the letter a"""
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from model_state import State
+from sqlalchemy.orm import Session
+from model_state import Base, State
 from model_city import City
 
-if __name__ == '__main__':
-     """ Arguments argv to connect to database
+
+def cities_state():
+    """ Arguments argv to connect to database
     argv[1]: mysql username
     argv[2]: mysql password
     argv[3]: database name
+    argv[4]: state name to search
     """
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
                            .format(sys.argv[1], sys.argv[2], sys.argv[3]),
                            pool_pre_ping=True)
 
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    Base.metadata.create_all(engine)
+    session = Session(engine)
+    var = session.query(State, City).join(City).all()
+    for i in var:
+        print("{}: ({}) {}".format(i[0].__dict__['name'],
+                                   i[1].__dict__['id'],
+                                   i[1].__dict__['name']))
+    session.close()
 
-    for city, state in session.query(City, State) \
-                              .filter(City.state_id == State.id) \
-                              .order_by(City.id):
-        print('{}: ({}) {}'.format(state.name, city.id, city.name))
+if __name__ == "__main__":
+    cities_state()
+    
