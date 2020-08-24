@@ -11,4 +11,3 @@ if __name__ == '__main__':
     result = requests.get(url, params=params).json()
     print("Number of results: {}".format(result.get("count")))
     [print(req.get("name")) for req in result.get("results")]
-    
