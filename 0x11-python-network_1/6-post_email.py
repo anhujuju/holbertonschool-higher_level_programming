@@ -12,4 +12,3 @@ if __name__ == '__main__':
     val = {'email': sys.argv[2]}
     req = requests.post(url, data=val)
     print(req.text)
-    
