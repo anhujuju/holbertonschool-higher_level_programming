@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//Script that prints the first argument passed 
+// Script that prints the first argument passed 
 
 if (process.argv[2]) {
     console.log(process.argv[2]);
