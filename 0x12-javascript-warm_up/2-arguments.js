@@ -8,4 +8,3 @@ if (process.argv[3]) {
   } else {
     console.log('No argument');
   }
-  
