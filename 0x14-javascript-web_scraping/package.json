@@ -1,0 +1,15 @@
+{
+  "name": "0x14-javascript-web_scraping",
+  "version": "1.0.0",
+  "description": "Javascripts interpretted on [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/) using [node v6.10.2](https://nodejs.org/en/blog/release/v6.10.2/) and must conform to [semistandard](https://github.com/Flet/semistandard) style.",
+  "main": "0-readme.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
