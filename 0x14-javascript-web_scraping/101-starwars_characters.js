@@ -1,30 +1,29 @@
 #!/usr/bin/node
-
 const request = require('request');
+const id = process.argv[2];
+const url = 'https://swapi-api.hbtn.io/api/films/' + id;
 
-request('https://swapi.co/api/films/' + process.argv[2], function (err, resp, body) {
+function getCharacterRecursion (characters, low, high) {
+  if (low < high) {
+    const url = characters[low];
+    request.get(url, (err, response, body) => {
+      if (err) {
+        console.log(err);
+      } else if (response.statusCode === 200) {
+        console.log(JSON.parse(body).name);
+      }
+      low += 1;
+      getCharacterRecursion(characters, low, high);
+    });
+  }
+}
+
+request.get(url, (err, response, body) => {
   if (err) {
     console.log(err);
-  } else if (resp.statusCode === 200 && resp.headers['content-type'] === 'application/json') {
-    let chars = JSON.parse(body).characters;
-    let promiseArray = [];
-    for (let i = 0; i < chars.length; i++) {
-      promiseArray.push(new Promise((resolve, reject) =>
-        request(chars[i], function (error, response, body) {
-          if (error) {
-            console.log(error);
-          }
-          if (err) {
-            reject(err);
-          } else if (response.statusCode === 200) {
-            resolve(JSON.parse(body).name);
-          }
-        })));
-    }
-    Promise.all(promiseArray).then((results) => {
-      for (let i = 0; i < results.length; i++) {
-        console.log(results[i]);
-      }
-    }).catch(err => console.log(err));
+  } else if (response.statusCode === 200) {
+    const characters = JSON.parse(body).characters;
+    const n = characters.length;
+    getCharacterRecursion(characters, 0, n);
   }
 });
